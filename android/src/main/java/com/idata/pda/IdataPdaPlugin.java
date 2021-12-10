@@ -98,10 +98,18 @@ public class IdataPdaPlugin implements FlutterPlugin, MethodCallHandler, Activit
       @Override
       public void onListen(Object arguments, EventChannel.EventSink events) {
         eventSink = events;
-        //初始化接口对象
-        miScanInterface = new iScanInterface(applicationContext);
-        //注册数据回调接口
-        miScanInterface.registerScan(scanResltListener);
+
+        try {
+          //初始化接口对象
+          miScanInterface = new iScanInterface(applicationContext);
+
+          //注册数据回调接口
+          miScanInterface.registerScan(scanResltListener);
+
+        } catch (Throwable t) {
+          t.printStackTrace();
+          eventSink.error("0", "监听失败", "");
+        }
       }
 
       @Override
@@ -134,11 +142,6 @@ public class IdataPdaPlugin implements FlutterPlugin, MethodCallHandler, Activit
           InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
           inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
-//Log.d(TAG, activity.toString());
-//activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
-
-//activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
         Log.d(TAG, "closeSoftKeyboard");
         break;
       default:

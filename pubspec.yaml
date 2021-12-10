@@ -1,6 +1,6 @@
 name: idata_pda
 description: pda with idata
-version: 0.0.2
+version: 0.0.3
 homepage: https://gitee.com/Fniu/flutter_idata_pda_scan
 
 environment:
