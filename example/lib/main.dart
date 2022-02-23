@@ -25,6 +25,7 @@ class _MyAppState extends State<MyApp> with PdaScanMixin<MyApp> {
         _version = version;
       });
 
+      await IdataPda.enableAddKeyValue(flag: 0);
       await IdataPda.closeSoftKeyboard();
     });
   }

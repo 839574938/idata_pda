@@ -35,8 +35,6 @@ PdaScanUtil.instance.cancel();
 
 
 
-
-
 #### 2. 获取android版本
 
 ```dart
@@ -47,7 +45,20 @@ String? version = await IdataPda.platformVersio;
 
 
 
-#### 3. 目前暂定为：焦点在的情况下，软键盘的隐藏
+#### 3. PDA设置附加按键
+
+```dart
+// 说明：将指定按键键值附加到扫描结果后。
+// 输入参数：flag，参数值，附加值类型。支持的值如下：
+// 不传入默认为 0
+// 0：不附加内容
+// 1：附加回车键
+// 2：附加 TAB 键
+// 3：附加换行符(\n)
+// 返回值：空
+
+await IdataPda.enableAddKeyValue(flag: 0);
+```
 
 
 

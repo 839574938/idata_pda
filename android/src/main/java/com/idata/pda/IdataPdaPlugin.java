@@ -136,13 +136,27 @@ public class IdataPdaPlugin implements FlutterPlugin, MethodCallHandler, Activit
       case "closeSoftKeyboard":
         // 关闭Android键盘
         // 在需要打开的Activity取消禁用软键盘
-
         View view = activity.getCurrentFocus();
         if (view != null) {
           InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
           inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
         Log.d(TAG, "closeSoftKeyboard");
+        break;
+      case "enableAddKeyValue":
+        // enableAddKeyValue
+        // 0：不附加内容
+        // 1：附加回车键
+        // 2：附加 TAB 键
+        // 3：附加换行符(\n)
+        try{
+          int flag = call.argument("flag");
+          miScanInterface.enableAddKeyValue(flag);
+          Log.d(TAG, "enableAddKeyValue");
+        } catch (Throwable t) {
+          Log.d(TAG, "enableAddKeyValue fail");
+          t.printStackTrace();
+        }
         break;
       default:
         result.notImplemented();
